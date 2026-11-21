@@ -8,35 +8,37 @@ export const project = {
   layout: "editorial",
   records: [
     {
-      id: "01-field-notes-1",
+      id: "field-notes-1",
       title: "Blue Post",
       description:
         "A serene environment in Thika with it's front facing Chania falls.",
       category: "PICKNIC",
-      meta: "open Daily · 8:00–11:00",
+      meta: "open Daily · 24 HRS",
       image:
         "https://lh3.googleusercontent.com/grass-cs/AABkmLec4TGVq_X7tZO9AVeLcRUKlF2ro3G_mkRJx991j9zCsdDc6mJLI4CPc5BkihTYXKFrdv_teghsSg2McZP431SZR7gZte0eKhsp-LvwHfjZAsFBP7ehjAVvWC_rxNylPlAKVlQ=w324-h312-n-k-no",
       imageAlt: "A serene chilling Spot",
     },
     {
-      id: "01-field-notes-2",
-      title: "Morrow Bread",
-      description: "Naturally leavened loaves, baked before the street wakes.",
-      category: "BAKERY",
-      meta: "River Ward · 07:30–14:00",
+      id: "field-notes-2",
+      title: "The Brandy Bus",
+      description:
+        "A unique, offbeat escape with the convenience of modern amenities..",
+      category: "GLAMPING",
+      meta: "Check in · By Booking",
       image:
-        "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1000&q=82",
-      imageAlt: "Books arranged on a shelf",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEgS-8hD3DIN6k0l17WndOMJZtRysPVlYfojeBEIv-pTZ6_d-a6Z_z0EI&s=10",
+      imageAlt: "Image of Brandy bus",
     },
     {
-      id: "01-field-notes-3",
-      title: "Juniper Repair",
-      description: "A second life for lamps, radios, and the odd toaster.",
-      category: "REPAIR",
-      meta: "Old Quarter · By appointment",
+      id: "field-notes-3",
+      title: "IMani Garden Cafe",
+      description:
+        "getting everything just perfect for all of you! We think that being able to enjoy our beautiful garden during those magical, sunset hours is going to be pretty special.",
+      category: "CAFE",
+      meta: "Monday-Saturday",
       image:
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=82",
-      imageAlt: "A working studio desk",
+        "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SWM--eARVryiAhy9Lo6-QUzxhpYM5erRxSe8YQOvgTvq0rEzaEqcVOznQjAegPcqhTFPkH41IsgSF7r_HYAKemAr8jmW3FOcAagOQG2YhSZVZicT5PAchMnEu718Q7Ojy6h4VT3g=w243-h203-n-k-no-nu",
+      imageAlt: "A display signpost of Imani Ya Juu",
     },
   ],
 };
