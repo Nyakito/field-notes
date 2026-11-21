@@ -1,11 +1,5 @@
 const apiBase = import.meta.env.VITE_API_BASE_URL ?? "";
 
-// export function filterRecords({ records, query, category }) {
-//   // Match query case-insensitively against title, description, and category; trim whitespace first.
-//   // Apply category unless it is "All records". Return a new array without mutating records.
-//   // Keep matching deterministic and test empty queries, whitespace, and no-result cases.
-//   throw new Error('TODO: implement filterRecords for Field Notes.');
-// }
 export function filterRecords({ records, query, category }) {
   const searchQuery = query.trim().toLowerCase();
 
