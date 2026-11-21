@@ -257,7 +257,7 @@ export default function App() {
         <footer className="page-footer">
           <span>{project.name}</span>
           <span>
-            With Optimism· <a href="./README.md">NYAKITO</a>
+            With Optimism· <a href="">NYAKITO</a>
           </span>
         </footer>
       </section>
