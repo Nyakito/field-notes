@@ -9,14 +9,14 @@ export const project = {
   records: [
     {
       id: "01-field-notes-1",
-      title: "The Listening Room",
+      title: "Blue Post",
       description:
-        "A record shop with a patient, beautifully sorted jazz shelf.",
-      category: "MUSIC",
-      meta: "North Loop · 11:00–18:00",
+        "A serene environment in Thika with it's front facing Chania falls.",
+      category: "PICKNIC",
+      meta: "open Daily · 8:00–11:00",
       image:
-        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=82",
-      imageAlt: "A warmly lit dining room",
+        "https://lh3.googleusercontent.com/grass-cs/AABkmLec4TGVq_X7tZO9AVeLcRUKlF2ro3G_mkRJx991j9zCsdDc6mJLI4CPc5BkihTYXKFrdv_teghsSg2McZP431SZR7gZte0eKhsp-LvwHfjZAsFBP7ehjAVvWC_rxNylPlAKVlQ=w324-h312-n-k-no",
+      imageAlt: "A serene chilling Spot",
     },
     {
       id: "01-field-notes-2",
