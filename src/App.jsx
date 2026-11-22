@@ -85,12 +85,16 @@ export default function App() {
 
   async function handleSearch() {
     setBusy(true);
+
     try {
       const result = await loadRecords({ query, category });
-      if (!Array.isArray(result?.records))
-        throw new TypeError("The API response must contain a records array.");
-      setRecords(result.records);
-      setVisibleRecords(result.records);
+
+      if (!Array.isArray(result)) {
+        throw new TypeError("Expected an array of records.");
+      }
+
+      setRecords(result);
+      setVisibleRecords(result);
       setNotice("");
     } catch (error) {
       showError(error);
@@ -98,7 +102,6 @@ export default function App() {
       setBusy(false);
     }
   }
-
   async function handleSave(recordId) {
     try {
       const result = await performRecordAction({
