@@ -6,7 +6,7 @@ import {
   performRecordAction,
 } from "./services/challenge.js";
 
-function RecordCard({ record, onAction, saved, onSave }) {
+function RecordCard({ record, saved, onSave }) {
   return (
     <article className="record-card">
       <div
@@ -15,6 +15,7 @@ function RecordCard({ record, onAction, saved, onSave }) {
         aria-hidden="true"
       >
         <span className="record-category">{record.category}</span>
+
         <button
           className={`save-button${saved ? " is-saved" : ""}`}
           type="button"
@@ -26,10 +27,12 @@ function RecordCard({ record, onAction, saved, onSave }) {
           </svg>
         </button>
       </div>
+
       <div className="record-copy">
         <p className="record-meta">{record.meta}</p>
         <h2>{record.title}</h2>
         <p className="record-description">{record.description}</p>
+
         <a
           className="text-action"
           href={record.website}
@@ -51,6 +54,8 @@ export default function App() {
   const [saved, setSaved] = useState([]);
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
+  const [activeView, setActiveView] = useState("records");
+
   const categories = useMemo(
     () => [
       "All records",
@@ -58,6 +63,7 @@ export default function App() {
     ],
     [],
   );
+
   function showError(error) {
     setNotice(
       error instanceof Error
@@ -73,8 +79,12 @@ export default function App() {
         query: nextQuery,
         category: nextCategory,
       });
-      if (!Array.isArray(filtered))
+
+      if (!Array.isArray(filtered)) {
         throw new TypeError("filterRecords must return an array of records.");
+      }
+
+      setActiveView("records");
       setCategory(nextCategory);
       setQuery(nextQuery);
       setVisibleRecords(filtered);
@@ -96,6 +106,7 @@ export default function App() {
 
       setRecords(result);
       setVisibleRecords(result);
+      setActiveView("records");
       setNotice("");
     } catch (error) {
       showError(error);
@@ -103,31 +114,74 @@ export default function App() {
       setBusy(false);
     }
   }
+
   async function handleSave(recordId) {
     try {
+      const isSaved = saved.includes(recordId);
+
       const result = await performRecordAction({
         recordId,
-        action: saved.includes(recordId) ? "unsave" : "save",
+        action: isSaved ? "unsave" : "save",
       });
-      if (typeof result?.message !== "string")
+
+      if (typeof result?.message !== "string") {
         throw new TypeError("The action response must include a message.");
+      }
+
       setSaved((current) =>
-        current.includes(recordId)
+        isSaved
           ? current.filter((id) => id !== recordId)
           : [...current, recordId],
       );
+
+      if (activeView === "saved" && isSaved) {
+        setVisibleRecords((current) =>
+          current.filter((record) => record.id !== recordId),
+        );
+      }
+
       setNotice(result.message);
     } catch (error) {
       showError(error);
     }
   }
 
+  function handleShowRecords(event) {
+    event.preventDefault();
+
+    setActiveView("records");
+
+    const filtered = filterRecords({
+      records,
+      query,
+      category,
+    });
+
+    setVisibleRecords(filtered);
+    setNotice("");
+  }
+
+  function handleShowSaved(event) {
+    event.preventDefault();
+
+    setActiveView("saved");
+
+    const savedPlaces = records.filter((record) => saved.includes(record.id));
+
+    setVisibleRecords(savedPlaces);
+    setNotice(`${savedPlaces.length} saved places.`);
+  }
+
   async function handleAction(recordId, action) {
     setBusy(true);
+
     try {
       const result = await performRecordAction({ recordId, action });
-      if (typeof result?.message !== "string")
+
+      if (typeof result?.message !== "string") {
         throw new TypeError("The action response must include a message.");
+      }
+
       setNotice(result.message);
     } catch (error) {
       showError(error);
@@ -145,40 +199,44 @@ export default function App() {
           </span>
           <span>{project.name}</span>
         </a>
+
         <p className="rail-label">WORKSPACE</p>
+
         <nav aria-label="Main navigation" className="main-nav">
           <a
-            className="nav-link is-current"
+            className={`nav-link${activeView === "records" ? " is-current" : ""}`}
             href="#records"
-            aria-current="page"
+            aria-current={activeView === "records" ? "page" : undefined}
+            onClick={handleShowRecords}
           >
             <span className="nav-dot" />
             Browse records
           </a>
+
           <a
-            className="nav-link"
+            className={`nav-link${activeView === "saved" ? " is-current" : ""}`}
             href="#saved"
-            onClick={(event) => {
-              event.preventDefault();
-              setNotice(
-                "Saved records are part of your implementation exercise.",
-              );
-            }}
+            aria-current={activeView === "saved" ? "page" : undefined}
+            onClick={handleShowSaved}
           >
             Saved items
           </a>
+
           <a className="nav-link" href="#about">
             About this project
           </a>
         </nav>
+
         <div className="rail-note">
           <span className="status-dot" />
           Notes By You <span>for you</span>
         </div>
       </aside>
+
       <section className="workspace" id="home">
         <header className="topbar">
           <p>{project.label}</p>
+
           <button
             className="quiet-button"
             type="button"
@@ -188,22 +246,27 @@ export default function App() {
             + {project.action}
           </button>
         </header>
+
         <div className="intro" id="about">
           <div>
             <h1>{project.headline}</h1>
             <p className="intro-copy">{project.subtitle}</p>
           </div>
+
           <p className="collection-note">
             PERSONAL COLLECTION<span>·</span> Places I could think of
           </p>
         </div>
+
         <div className="toolbar" id="records">
           <label className="search-box">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="10.8" cy="10.8" r="6.8" />
               <path d="m16 16 4.2 4.2" />
             </svg>
+
             <span className="sr-only">Search records</span>
+
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
@@ -212,10 +275,12 @@ export default function App() {
               }}
               placeholder="Search this collection"
             />
+
             <button type="button" disabled={busy} onClick={handleSearch}>
               Search
             </button>
           </label>
+
           <div className="filters" aria-label="Filter by category">
             {categories.map((item) => (
               <button
@@ -230,9 +295,11 @@ export default function App() {
             ))}
           </div>
         </div>
+
         {notice && (
           <p className={`notice${busy ? " is-busy" : ""}`} role="status">
             {busy ? "Working…" : notice}
+
             <button
               type="button"
               aria-label="Dismiss message"
@@ -242,6 +309,7 @@ export default function App() {
             </button>
           </p>
         )}
+
         <section className="record-grid" aria-label={`${project.name} records`}>
           {visibleRecords.map((record) => (
             <RecordCard
@@ -249,15 +317,18 @@ export default function App() {
               record={record}
               saved={saved.includes(record.id)}
               onSave={handleSave}
-              onAction={handleAction}
             />
           ))}
+
           {visibleRecords.length === 0 && (
             <p className="empty-state">
-              No records match this view. Try a different search.
+              {activeView === "saved"
+                ? "You haven't saved any places yet."
+                : "No records match this view. Try a different search."}
             </p>
           )}
         </section>
+
         <footer className="page-footer">
           <span>{project.name}</span>
           <span>
