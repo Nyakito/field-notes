@@ -104,10 +104,13 @@ export default function App() {
         throw new TypeError("Expected an array of records.");
       }
 
-      setRecords(result);
       setVisibleRecords(result);
       setActiveView("records");
-      setNotice("");
+      setNotice(
+        result.length === 0
+          ? "No records found. Try another search."
+          : `${result.length} records found.`,
+      );
     } catch (error) {
       showError(error);
     } finally {
@@ -275,9 +278,20 @@ export default function App() {
               }}
               placeholder="Search this collection"
             />
-
             <button type="button" disabled={busy} onClick={handleSearch}>
               Search
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                setCategory("All records");
+                setActiveView("records");
+                setVisibleRecords(records);
+                setNotice("");
+              }}
+            >
+              Clear
             </button>
           </label>
 
