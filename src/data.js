@@ -16,6 +16,7 @@ export const project = {
       meta: "open Daily · 24 HRS",
       image:
         "https://lh3.googleusercontent.com/grass-cs/AABkmLec4TGVq_X7tZO9AVeLcRUKlF2ro3G_mkRJx991j9zCsdDc6mJLI4CPc5BkihTYXKFrdv_teghsSg2McZP431SZR7gZte0eKhsp-LvwHfjZAsFBP7ehjAVvWC_rxNylPlAKVlQ=w324-h312-n-k-no",
+      website: "https://www.blueposthotel.co.ke/",
       imageAlt: "A serene chilling Spot",
     },
     {
@@ -27,6 +28,7 @@ export const project = {
       meta: "Check in · By Booking",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEgS-8hD3DIN6k0l17WndOMJZtRysPVlYfojeBEIv-pTZ6_d-a6Z_z0EI&s=10",
+      website: "https://www.thebrandybus.com/",
       imageAlt: "Image of Brandy bus",
     },
     {
@@ -38,6 +40,7 @@ export const project = {
       meta: "Monday-Saturday",
       image:
         "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SWM--eARVryiAhy9Lo6-QUzxhpYM5erRxSe8YQOvgTvq0rEzaEqcVOznQjAegPcqhTFPkH41IsgSF7r_HYAKemAr8jmW3FOcAagOQG2YhSZVZicT5PAchMnEu718Q7Ojy6h4VT3g=w243-h203-n-k-no-nu",
+      website: "https://www.amanigardencafe.org/",
       imageAlt: "A display signpost of Imani Ya Juu",
     },
   ],

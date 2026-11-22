@@ -30,13 +30,14 @@ function RecordCard({ record, onAction, saved, onSave }) {
         <p className="record-meta">{record.meta}</p>
         <h2>{record.title}</h2>
         <p className="record-description">{record.description}</p>
-        <button
+        <a
           className="text-action"
-          type="button"
-          onClick={() => onAction(record.id, "open")}
+          href={record.website}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Open record <span aria-hidden="true">↗</span>
-        </button>
+          Read more <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </article>
   );
