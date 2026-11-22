@@ -21,14 +21,27 @@ export async function loadRecords({
   category = "All records",
   signal,
 } = {}) {
-  // Fetch GET /api/places with query and category URL parameters; pass signal through to fetch.
-  // Check response.ok, parse JSON, and validate it contains {records:[...]} before returning.
-  // Surface HTTP and malformed-response errors; never silently replace failures with starter records.
-  void apiBase;
-  void query;
-  void category;
-  void signal;
-  throw new Error("TODO: implement loadRecords for Field Notes.");
+  const params = new URLSearchParams({
+    query,
+    category,
+  });
+
+  const response = await fetch(`/api/places?${params}`, {
+    method: "GET",
+    signal,
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  if (!data || !Array.isArray(data.records)) {
+    throw new Error("Invalid API response: records must be an array.");
+  }
+
+  return data.records;
 }
 
 export async function performRecordAction({ recordId, action, payload = {} }) {

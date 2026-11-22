@@ -9,11 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
     "@tailwindcss/vite": "latest",
-    "tailwindcss": "latest",
-    "vite": "latest",
+    "@vitejs/plugin-react": "latest",
+    "express": "^5.3.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "tailwindcss": "latest",
+    "vite": "latest"
   }
 }
