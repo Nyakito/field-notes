@@ -45,12 +45,28 @@ export async function loadRecords({
 }
 
 export async function performRecordAction({ recordId, action, payload = {} }) {
-  // POST /api/places/:recordId/actions with { action, ...payload } as JSON.
-  // Check response.ok, validate the result, and return it for the UI to display.
-  // Authorize actions in the backend and make data-changing retries safe where appropriate.
-  void apiBase;
-  void recordId;
-  void action;
-  void payload;
-  throw new Error("TODO: implement performRecordAction for Field Notes.");
+  const url = `${apiBase}/api/places/${encodeURIComponent(recordId)}/actions`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      action,
+      ...payload,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error: ${response.status}`);
+  }
+
+  const result = await response.json();
+
+  if (!result || typeof result.message !== "string") {
+    throw new Error("Invalid API response: a message is required.");
+  }
+
+  return result;
 }
