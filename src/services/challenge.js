@@ -1,72 +1,69 @@
-const apiBase = import.meta.env.VITE_API_BASE_URL ?? "";
+import { project } from '../data.js';
 
-export function filterRecords({ records, query, category }) {
-  const searchQuery = query.trim().toLowerCase();
+const DEFAULT_CATEGORY = 'All records';
+
+function normalizeText(value) {
+  return typeof value === 'string' ? value.trim().toLocaleLowerCase() : '';
+}
+
+export function filterRecords({
+  records = project.records,
+  query = '',
+  category = DEFAULT_CATEGORY,
+} = {}) {
+  if (!Array.isArray(records)) return [];
+
+  const searchQuery = normalizeText(query);
+  const selectedCategory = normalizeText(category);
 
   return records.filter((record) => {
-    const matchesQuery =
-      record.title.toLowerCase().includes(searchQuery) ||
-      record.description.toLowerCase().includes(searchQuery) ||
-      record.category.toLowerCase().includes(searchQuery);
+    if (!record || typeof record !== 'object') return false;
 
-    const matchesCategory =
-      category === "All records" || record.category === category;
+    const searchableText = [record.title, record.description, record.category, record.meta]
+      .filter((value) => typeof value === 'string')
+      .join(' ')
+      .toLocaleLowerCase();
+    const matchesQuery = !searchQuery || searchableText.includes(searchQuery);
+    const matchesCategory = !selectedCategory
+      || selectedCategory === normalizeText(DEFAULT_CATEGORY)
+      || normalizeText(record.category) === selectedCategory;
 
     return matchesQuery && matchesCategory;
   });
 }
 
-export async function loadRecords({
-  query = "",
-  category = "All records",
-  signal,
-} = {}) {
-  const params = new URLSearchParams({
-    query,
-    category,
-  });
-
-  const response = await fetch(`/api/places?${params}`, {
-    method: "GET",
-    signal,
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error: ${response.status}`);
+export async function loadRecords({ query = '', category = DEFAULT_CATEGORY, signal } = {}) {
+  if (signal?.aborted) {
+    const error = new Error('Loading records was cancelled.');
+    error.name = 'AbortError';
+    throw error;
   }
 
-  const data = await response.json();
-
-  if (!data || !Array.isArray(data.records)) {
-    throw new Error("Invalid API response: records must be an array.");
-  }
-
-  return data.records;
+  const records = filterRecords({ records: project.records, query, category });
+  return records;
 }
 
-export async function performRecordAction({ recordId, action, payload = {} }) {
-  const url = `${apiBase}/api/places/${encodeURIComponent(recordId)}/actions`;
+export async function performRecordAction({ recordId, action } = {}) {
+  const record = project.records.find((item) => item.id === recordId);
+  if (!record && action !== 'create') {
+    return { message: 'No matching starter record was found; no changes were made.' };
+  }
+  const title = record?.title ?? 'This record';
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      action,
-      ...payload,
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error: ${response.status}`);
+  if (action === 'save') {
+    return { message: `${title} was added to your saved items for this session.` };
+  }
+  if (action === 'unsave') {
+    return { message: `${title} was removed from your saved items for this session.` };
+  }
+  if (action === 'open') {
+    return { message: `A detail view for ${title.toLowerCase()} is not available in this local demo; no data was changed.` };
+  }
+  if (action === 'create') {
+    return { message: 'No record was created; adding records is not implemented in this local demo.' };
   }
 
-  const result = await response.json();
-
-  if (!result || typeof result.message !== "string") {
-    throw new Error("Invalid API response: a message is required.");
-  }
-
-  return result;
+  return {
+    message: `The ${JSON.stringify(String(action ?? 'unknown'))} action is not implemented in this local demo; no data was changed.`,
+  };
 }

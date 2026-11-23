@@ -1,11 +1,11 @@
 @import "tailwindcss";
 :root {
-  --canvas: #f1eee5;
-  --surface: #fffdf8;
-  --ink: #243b34;
-  --muted: #73796e;
-  --accent: #cf573d;
-  --soft: #d6dece;
+  --canvas: #e7e5d8;
+  --surface: #faf8ef;
+  --ink: #263c35;
+  --muted: #66746a;
+  --accent: #b64f35;
+  --soft: #c9d1b7;
   --font-body: "Newsreader";
   --font-display: "Newsreader";
 }
@@ -263,7 +263,7 @@ h1 {
 }
 .filter-chip {
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius:2px;
   background: transparent;
   color: var(--muted);
   padding: 7px 10px;
@@ -327,7 +327,7 @@ h1 {
   display: grid;
   place-items: center;
   border: 0;
-  border-radius: 50%;
+  border-radius:2px;
   background: var(--surface);
   cursor: pointer;
 }
@@ -608,3 +608,20 @@ h1 {
     flex-direction: column;
   }
 }
+
+:root{--focus:var(--accent)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.filter-chip,.save-button,.quiet-button{border-radius:2px}
+.app-shell{grid-template-columns:218px minmax(0,1fr)}.side-rail{background:#e1e2d2;border-right:2px solid #b9c3aa;padding-inline:25px}.brand{font-family:var(--font-display),serif;font-size:17px}.brand-mark{border-radius:2px;background:#a74732}.workspace{max-width:1600px;padding-inline:clamp(28px,6vw,92px)}.intro{padding-top:66px}.intro-copy{max-width:430px}.record-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.record-card{border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}.record-card:nth-child(2){margin-top:54px}.record-card:nth-child(3){margin-top:108px}.record-image{min-height:265px}.record-copy{padding:16px 3px 20px}.record-copy h2{font-size:24px}.record-category{left:0;bottom:0;border-radius:0 3px 0 0}.save-button{top:10px;right:10px;border-radius:2px}.filter-chip{border-radius:0;border-bottom:2px solid transparent}.filter-chip.is-active{border-color:var(--accent)}@media(max-width:1000px){.record-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.record-card:nth-child(2),.record-card:nth-child(3){margin-top:0}}@media(max-width:650px){.record-grid{grid-template-columns:1fr}.record-card:nth-child(n){margin-top:0}.record-image{min-height:230px}}
+
+
+/* Field journal: an annotated page with a narrow folio rail and offset entries. */
+.app-shell{grid-template-columns:74px minmax(0,1fr);background:#ecebdc}.side-rail{position:sticky;top:0;height:100vh;min-height:0;padding:24px 10px;background:#d7dac8;border:0;border-right:1px solid #aeb69f}.brand{writing-mode:vertical-rl;transform:rotate(180deg);margin:auto;font-family:var(--font-display),serif}.brand-mark{display:none}.rail-label,.rail-note{display:none}.main-nav{margin:auto;gap:14px}.nav-link{writing-mode:vertical-rl;transform:rotate(180deg);padding:10px 6px;border-radius:0;font:10px var(--font-body),serif;letter-spacing:.08em}.nav-dot{display:none}.workspace{max-width:1700px;padding:0 clamp(24px,6vw,100px);display:flex;flex-direction:column}.topbar{order:0;min-height:60px;border-bottom:1px solid #aeb69f}.topbar>p{font-family:var(--font-body),serif;font-size:12px;letter-spacing:.16em}.intro{order:1;display:grid;grid-template-columns:minmax(0,1fr) 160px;align-items:end;padding:62px 0 34px}.intro h1{font-size:clamp(54px,8vw,112px);font-weight:400;line-height:.86;max-width:850px}.intro-copy{max-width:430px}.collection-note{white-space:normal;line-height:1.6;border-left:1px solid var(--accent);padding:6px 0 6px 14px}.toolbar{order:2;border-top:1px solid #aeb69f;border-bottom:0;padding:14px 0}.search-box{max-width:320px;border-bottom:1px solid #8e9b86;padding-bottom:8px}.filter-chip{border-radius:0}.filter-chip.is-active{background:transparent;color:var(--ink);border-bottom:2px solid var(--accent)}.record-grid{order:3;grid-template-columns:1.08fr .92fr .92fr;gap:34px;padding:25px 0 68px}.record-card{border:0;border-radius:0;background:transparent;overflow:visible}.record-card:nth-child(2){margin-top:72px}.record-card:nth-child(3){margin-top:144px}.record-card:hover{transform:translateY(-3px);box-shadow:none}.record-image{min-height:clamp(240px,27vw,400px);border:1px solid #b8bea7}.record-card:first-child .record-image{min-height:clamp(300px,38vw,510px)}.record-copy{padding:15px 2px}.record-copy h2{font-size:clamp(22px,2.4vw,31px)}.record-category{left:0;bottom:0;border-radius:0}.save-button{border-radius:0}.page-footer{order:4}@media(max-width:850px){.app-shell{grid-template-columns:56px minmax(0,1fr)}.workspace{padding-inline:28px}.record-grid{grid-template-columns:1fr 1fr}.record-card:nth-child(n){margin-top:0}.record-card:first-child{grid-row:span 2}.record-card:first-child .record-image{min-height:450px}}@media(max-width:600px){.app-shell{display:block}.side-rail{position:static;height:auto;display:flex;flex-direction:row;padding:10px 15px;border-right:0;border-bottom:1px solid #aeb69f}.brand{writing-mode:horizontal-tb;transform:none;margin:0 auto 0 0}.main-nav{display:flex;margin:0;gap:4px}.nav-link{writing-mode:horizontal-tb;transform:none}.workspace{padding-inline:18px}.intro{grid-template-columns:1fr;padding-top:38px}.collection-note{margin-top:20px}.record-grid{grid-template-columns:1fr;gap:24px}.record-card:first-child{grid-row:auto}.record-card:first-child .record-image,.record-image{min-height:230px}.page-footer{flex-direction:column}}
+
+:root{--focus:#111827}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:3px;box-shadow:0 0 0 2px #fff}
+.filter-chip,.save-button,.quiet-button{border-radius:2px}
+
+.workspace > .notice{grid-column:1/-1!important;grid-row:auto!important}
+
+.layout-editorial h1{font-size:clamp(54px,8vw,112px)}.layout-editorial .record-grid{grid-template-columns:1.08fr .92fr .92fr;gap:34px}.layout-editorial .record-card:nth-child(2){margin-top:72px}.layout-editorial .record-image{min-height:clamp(240px,27vw,400px)}.layout-editorial .record-card:first-child .record-image{min-height:clamp(300px,38vw,510px)}

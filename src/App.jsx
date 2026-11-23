@@ -194,7 +194,7 @@ export default function App() {
   }
 
   return (
-    <main className={`app-shell layout-${project.layout}`}>
+    <main className={`app-shell project-01 layout-${project.layout}`}>
       <aside className="side-rail">
         <a className="brand" href="#home" aria-label={`${project.name} home`}>
           <span className="brand-mark" aria-hidden="true">
@@ -213,7 +213,7 @@ export default function App() {
             onClick={handleShowRecords}
           >
             <span className="nav-dot" />
-            Browse records
+            Places
           </a>
 
           <a
@@ -226,7 +226,7 @@ export default function App() {
           </a>
 
           <a className="nav-link" href="#about">
-            About this project
+            Guide notes
           </a>
         </nav>
 

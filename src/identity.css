@@ -1,0 +1,9 @@
+.project-01 .record-copy {
+  animation: folio-arrive 650ms cubic-bezier(.2, .75, .3, 1) both;
+}
+.project-01 .record-card:nth-child(2) { animation-delay: 110ms; }
+.project-01 .record-card:nth-child(3) { animation-delay: 220ms; }
+.project-01 .text-action span { transition: transform 180ms ease; }
+.project-01 .text-action:hover span { transform: translate(3px, -3px); }
+@keyframes folio-arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .project-01 *, .project-01 *::before { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
