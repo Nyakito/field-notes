@@ -1,46 +1,54 @@
 # Field Notes
 
-## The problem
+**A living atlas of small places worth finding.**
 
-Independent neighborhood places are scattered across paid listings and social posts.
+## Overview
 
-## How this project helps
+Field Notes is a place-discovery platform built around the idea that interesting places are worth documenting and sharing.
 
-Build a searchable, community-maintained guide with clear details and a submission path.
+It provides a space to discover, explore, and keep track of places, from hidden neighbourhood gems to well-known local destinations.
 
-### Learning goals
+The platform aims to make discovering places more accessible while creating a growing collection of location-based knowledge.
 
-- Validate place submissions with JavaScript.
-- Implement search and category filters.
-- Persist saved places in the browser and prevent duplicates.
-- Practice Node.js and npm as the local frontend development toolchain.
+## Purpose
 
-### I am done when you can
+The purpose of Field Notes is to:
 
-- Submit a new place and see useful validation feedback.
-- Search and filter categories.
-- Save a place and have it persist after reloading.
-- Show loading, empty, and recoverable error states.
-- Check the layout at narrow and wide viewport sizes.
+- Make it easier to discover interesting places.
+- Highlight places that might otherwise go unnoticed.
+- Preserve information about local destinations.
+- Help people explore their surroundings.
+- Build a shared collection of places and experiences.
 
-## Challenge scope
+## Core Features
 
-This is a JavaScript frontend challenge. Use the supplied fictional starter records and browser storage. Keep the experience useful with local data if an online API is unavailable. Do not create a custom API or put secrets in browser code or public `VITE_` variables.
+1. **Place Discovery** – Explore a collection of interesting places and destinations.
 
-### Optional client-side API practice
+2. **Search** – Find specific places using relevant keywords.
 
-Use browser `fetch()` to consume a relevant, established public API. Handle loading, empty, network, and non-success HTTP responses, and validate returned data before using it.
+3. **Categories** – Browse places according to their type or classification.
 
-## UI constraints
+4. **Place Information** – Access descriptions and relevant details about individual places.
 
-- No emoji.
-- Avoid fully rounded buttons and an everything-centered layout; use clear alignment and hierarchy.
-- Use deep, balanced colors. Do not use gradients or glow effects.
+5. **Saved Places** – Keep track of places worth revisiting or exploring later.
 
-## Run the project
+## Who Is It For?
 
-Use Node.js LTS (which includes npm). From the repository root, install once with `npm install`, then run `npm run dev --workspace=field-notes`. You can also run `npm run dev` from this folder. Build with `npm run build --workspace=field-notes`. These commands run the frontend development and build tools.
+Field Notes is intended for:
 
-## Contributing
+- Travellers looking for interesting destinations.
+- Local explorers discovering places within their communities.
+- People searching for unique experiences.
+- Individuals interested in documenting and sharing local discoveries.
 
-Choose one focused improvement (a tested JavaScript rule, accessible interaction, or clearer client-side fetch behavior). Explain the user problem and intended behavior, run the app and build, and document verification in your pull request. Keep credentials and personal information out of fixtures. Preserve unfinished exercise functions unless contributing an explicitly marked optional reference solution.
+## Project Vision
+
+Field Notes aims to become a growing digital atlas of interesting places, combining local discoveries, useful information, and community knowledge.
+
+Rather than focusing exclusively on popular tourist destinations, the platform embraces the smaller, less obvious places that make locations interesting.
+
+## Guiding Principle
+
+Not every interesting place is famous. Some of the best discoveries are found in the places people overlook.
+
+**Field Notes — Small places. Worth finding.**
